@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from registro.models import Persona
 from .forms import CreateNewPerson
+
 # Create your views here.
 
 def index(request):
