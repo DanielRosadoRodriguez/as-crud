@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'crud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':os.getenv('DB_ENGINE'),
+        'ENGINE':os.getenv('ENGINE'),
         'NAME': os.getenv('NAME'),
         'USER': os.getenv('USER'),
         'PASSWORD': os.getenv('PASSWORD'),
