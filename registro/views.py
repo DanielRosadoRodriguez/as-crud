@@ -21,7 +21,9 @@ def add(request):
 def get_all_persons(request):
     all_persons = Persona.objects.all()
     persons = list(all_persons)
-    return persons
+    for person in persons:
+        print(person.name)
+    return HttpResponse('Persons listed in console')
 
 
 def _add_person_to_db(data):
@@ -33,6 +35,7 @@ def _add_person_to_db(data):
             phone=data['phone'],
         )
         person.save()
+        print(f"Person {person.name} added to db")
     except Exception as e:
         print(f"An error occurred: {e}")
 
