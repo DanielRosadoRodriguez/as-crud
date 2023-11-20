@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .forms import CreateNewPerson
 # Create your views here.
 
 def index(request):
@@ -10,4 +10,5 @@ def users(request):
     return render(request, 'users.html')
 
 def add(request):
-    return render(request, 'add.html')
+    form = CreateNewPerson()
+    return render(request, 'add.html', {'form': form})

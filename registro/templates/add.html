@@ -1,11 +1,10 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Agregar usuario</title>
-  </head>
-  <body>
-    <h1>Agregar usuario</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Agregar usuario</h1>
+
+  <form method="post" action="/add_new_person">
+    {{ form }}
+    <button type="submit" name="submit">Agregar</button>
+  </form>
+{% endblock %}
