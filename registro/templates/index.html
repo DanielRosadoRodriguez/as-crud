@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Hola, soy el CRUD!</h1>
+  <form method='get' action="{% url 'users'%}">
+    <div class="d-grid gap-2 col-6 mx-auto m-3">
+      <h1 class="text-center">Crud de personas</h1>
+      <button type="submit" class="btn btn-primary btn-lg m-3">Ver usuarios</button>
+    </div>
+  </form>
 {% endblock %}

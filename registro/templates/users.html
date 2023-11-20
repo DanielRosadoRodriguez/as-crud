@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Manage Users</a>
+      <a class="navbar-brand" href="#">CRUD usuarios</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -15,11 +14,33 @@
         <form class="d-flex">
           <button class="btn btn-danger" type="submit">Borrar</button>
         </form>
-        <form class="d-flex" action="/add">
+        <form class="d-flex" action="{% url 'add'%}">
           <button class="btn btn-success" type="submit">Agregar</button>
         </form>
       </div>
     </div>
   </nav>
 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">PK</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody class="">
+      {% for persona in persons %}
+        <tr>
+          <td>{{ persona.pk }}</td>
+          <td>{{ persona.name }}</td>
+          <td>{{ persona.email }}</td>
+          <td>{{ persona.address }}</td>
+          <td>{{ persona.phone }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

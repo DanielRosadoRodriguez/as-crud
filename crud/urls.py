@@ -21,9 +21,9 @@ from registro import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('users/', views.users),
-    path('add/', views.add),
+    path('', views.index, name='index'),
+    path('users/', views.users, name='users'),
+    path('add/', views.add, name='add'),
     path('test_add_person/', views.test_add_person, name='test_add_person'),
     path('get_all_persons/', views.get_all_persons, name='get_all_persons'),
 ]

@@ -10,7 +10,7 @@ def index(request):
 
 
 def users(request):
-    return render(request, 'users.html')
+    return render(request, 'users.html', {'persons': Persona.objects.all()})
 
 
 def add(request):
@@ -24,6 +24,7 @@ def get_all_persons(request):
     for person in persons:
         print(person.name)
     return HttpResponse('Persons listed in console')
+
 
 
 def _add_person_to_db(data):
