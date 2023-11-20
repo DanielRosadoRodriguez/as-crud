@@ -9,6 +9,13 @@ def index(request):
 def users(request):
     return render(request, 'users.html')
 
+
 def add(request):
     form = CreateNewPerson()
     return render(request, 'add.html', {'form': form})
+
+
+def get_all_persons(request):
+    all_persons = Persona.objects.all()
+    persons = list(all_persons)
+    return persons
