@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from registro.models import Persona
 from .forms import CreateNewPerson
 
@@ -39,6 +39,16 @@ def _add_person_to_db(data):
         print(f"Person {person.name} added to db")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+def add_person(request):
+    if request.method == 'POST':
+        form = CreateNewPerson(request.POST)
+        if form.is_valid():
+            _add_person_to_db(form.cleaned_data)
+    else:
+        form = CreateNewPerson()
+    return redirect('users')
 
 
 def test_add_person(request):
