@@ -9,3 +9,5 @@ def index(request):
 def users(request):
     return render(request, 'users.html')
 
+def add(request):
+    return render(request, 'add.html')
