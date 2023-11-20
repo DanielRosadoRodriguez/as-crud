@@ -45,7 +45,6 @@ def delete_person(request):
     return redirect('users')
 
 
-
 def _delete_person(person):
     try:
         person.delete()
@@ -53,6 +52,13 @@ def _delete_person(person):
         print(f"An error occurred: {e}")
 
 
+def edit_person(request):
+    if request.method == 'POST':
+        person_id = request.POST.get('email')
+        print(f"Editing person with id {person_id}")
+    return redirect('users')
+
+        
 def _add_person_to_db(data):
     try:
         person = Persona(
