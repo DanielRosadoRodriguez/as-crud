@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method="post" action="{% url 'delete_selected_users' %}">
-    {% csrf_token %}
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">CRUD usuarios</a>
@@ -65,5 +62,4 @@
         {% endfor %}
       </tbody>
     </table>
-  </form>
 {% endblock %}

@@ -37,9 +37,10 @@ def delete_selected_users(request):
 
 
 def delete_person(request):
-    print("función eliminar")
     if request.method == 'POST':
         person_id = request.POST.get('email')
+        person_to_delete = Persona.objects.get(email=person_id)
+        _delete_person(person_to_delete)
         print(f"Deleting person with id {person_id}")
     return redirect('users')
 
