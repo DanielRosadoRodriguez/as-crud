@@ -18,11 +18,6 @@ def add(request):
     return render(request, 'add.html', {'form': form})
 
 
-def edit(request):
-    form = CreateNewPerson()
-    return render(request, 'edit.html', {'form': form})
-
-
 def get_all_persons(request):
     all_persons = Persona.objects.all()
     persons = list(all_persons)
@@ -31,6 +26,7 @@ def get_all_persons(request):
     return HttpResponse('Persons listed in console')
 
 
+# TODO
 def delete_selected_users(request):
     print("función eliminar")
     if request.method == 'POST':
@@ -57,11 +53,38 @@ def _delete_person(person):
         print(f"An error occurred: {e}")
 
 
+def edit(request):
+    if request.method == 'POST':
+        person_id = request.POST.get('email')
+        person_to_edit = Persona.objects.get(email=person_id)
+        form = CreateNewPerson(
+            initial={
+                'name': person_to_edit.name,
+                'email': person_to_edit.email,
+                'address': person_to_edit.address,
+                'phone': person_to_edit.phone,
+            }
+        )
+        return render(request, 'edit.html', {'form': form})
+    return HttpResponse('Error al editar')
+
+
 def edit_person(request):
     if request.method == 'POST':
         person_id = request.POST.get('email')
-        print(f"Editing person with id {person_id}")
-    return redirect('edit')
+        person_to_edit = Persona.objects.get(email=person_id)
+        form = CreateNewPerson(request.POST)
+        if form.is_valid():
+            _edit_person(person_to_edit, form.cleaned_data)
+    return redirect('users')
+
+def _edit_person(person, new_person):
+    try:
+        _delete_person(person)
+        _add_person_to_db(new_person)
+        print(f"Person {new_person.name} edited")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
         
 def _add_person_to_db(data):

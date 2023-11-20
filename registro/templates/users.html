@@ -51,7 +51,7 @@
               </button>
             </form>
 
-            <form action="{% url 'edit_person' %}" method="post">
+            <form action="{% url 'edit' %}" method="post">
               {% csrf_token %}
               <button name="email" value="{{ persona.email }}" type="submit" class="btn btn-warning">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

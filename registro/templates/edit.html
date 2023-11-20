@@ -6,11 +6,10 @@
       <div class="col-md-6">
         <h1 class="text-center">Editar usuario</h1>
 
-        <form method="post"  class="my-4">
+        <form method="post" class="my-4" action="{% url 'edit_person' %}">
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="btn btn-primary">Guardar cambios</button>
-          <button type="submit" class="btn btn-primary">Reiniciar</button>
         </form>
       </div>
     </div>
