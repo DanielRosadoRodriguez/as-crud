@@ -18,6 +18,11 @@ def add(request):
     return render(request, 'add.html', {'form': form})
 
 
+def edit(request):
+    form = CreateNewPerson()
+    return render(request, 'edit.html', {'form': form})
+
+
 def get_all_persons(request):
     all_persons = Persona.objects.all()
     persons = list(all_persons)
@@ -56,7 +61,7 @@ def edit_person(request):
     if request.method == 'POST':
         person_id = request.POST.get('email')
         print(f"Editing person with id {person_id}")
-    return redirect('users')
+    return redirect('edit')
 
         
 def _add_person_to_db(data):

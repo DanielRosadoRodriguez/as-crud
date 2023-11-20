@@ -27,6 +27,7 @@ urlpatterns = [
     path('delete_selected_users/', views.delete_selected_users, name='delete_selected_users'),
     path('delete_person/', views.delete_person, name='delete_person'),
     path('edit_person/', views.edit_person, name='edit_person'),
+    path('edit/', views.edit, name='edit'),
     path('test_add_person/', views.test_add_person, name='test_add_person'),
     path('get_all_persons/', views.get_all_persons, name='get_all_persons'),
 ]
