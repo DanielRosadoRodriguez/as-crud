@@ -11,35 +11,40 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
         </ul>
-        <button class="btn btn-danger" type="submit">Borrar</button>
-        <form class="d-flex" action="{% url 'add' %}">
+
+        <form class="d-flex" action="{% url 'add' %}" method="post">
+          {% csrf_token %}
           <button class="btn btn-success" type="submit">Agregar</button>
         </form>
       </div>
     </div>
   </nav>
+  <form action="{% url 'delete_selected_users' %}" method="post">
+    <button class="btn btn-danger" type="submit">Borrar</button>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">[*]</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Email</th>
-        <th scope="col">Address</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Actions</th>
-      </tr>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">[*]</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Actions</th>
+        </tr>
     </thead>
     <tbody class="">
       {% for persona in persons %}
         <tr>
           <td>
-            <input type="checkbox" name="selected_persons" />
+            <input type="checkbox" name="checks[]" value="{{ persona.email }}" />
           </td>
+
           <td>{{ persona.name }}</td>
           <td>{{ persona.email }}</td>
           <td>{{ persona.address }}</td>
           <td>{{ persona.phone }}</td>
+
           <td>
             <form action="{% url 'delete_person' %}" method="post">
               {% csrf_token %}

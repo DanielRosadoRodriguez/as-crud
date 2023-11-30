@@ -28,13 +28,12 @@ def get_all_persons(request):
 
 # TODO
 def delete_selected_users(request):
-    print("función eliminar")
     if request.method == 'POST':
-        selected_persons = request.POST.getlist('selected_persons')
-        print(selected_persons.count)
+        selected_persons = request.POST.getlist('checks[]')
         for person_id in selected_persons:
-            print(f"Deleting person with id {person_id}")
-    return HttpResponse('Persons deleted')
+            person_to_delete = Persona.objects.get(email=person_id)
+            _delete_person(person_to_delete)
+    return redirect('users')
 
 
 def delete_person(request):
